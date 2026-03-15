@@ -5,6 +5,13 @@
 // String dependency
 #include <string>
 
+// Struct to group data variables
+struct EnrollmentDate {
+  int day;
+  int month;
+  int year;
+};
+
 // Temp function to test workspace
 void checkLink();
 
