@@ -1,10 +1,16 @@
-// Link header file
+// Preprocessor Directive
 #include "Student.h"
 
 // Library for input/output
 #include <iostream>
 
-// Function definition
-void checkLink() {
-  std::cout << "Link establshed" << std::endl;
+// Scope Resolution
+Student::Student() {
+  // Empty for testing
 }
+
+// Method definition
+void Student::ping() {
+  std::cout << "Object instantiated" << std::endl;
+}
+
