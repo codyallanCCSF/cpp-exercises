@@ -12,8 +12,19 @@ struct EnrollmentDate {
   int year;
 };
 
-// Temp function to test workspace
-void checkLink();
+// "Student" class declaration
+// Defines custom data type
+class Student {
+
+  // Public access specifier
+  public:
+
+  // Constructor with no parameters
+  Student();
+
+  // Test member function
+  void ping();
+};
 
 // Close header guard
 #endif
