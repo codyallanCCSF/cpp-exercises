@@ -4,11 +4,10 @@
 
 int main() {
   
-  // Creates Student object
-  Student testObject;
+  Student myStudent("Cody", 16, 3, 2026);
 
-  // Call ping method
-  testObject.ping();
+  myStudent.displayProfile();
+    
   
   return 0;
 }
