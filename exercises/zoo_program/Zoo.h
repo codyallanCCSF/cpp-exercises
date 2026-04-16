@@ -32,12 +32,15 @@ class Animal {
 
 };
 
+// Lion
+
 class Lion : public Animal {
   private:
     std::string maneColor;
 
   public:
-    Lion(std::string name, int age, std::string habitat, std::string maneColor);
+    Lion(std::string name, int age, std::string habitat,
+        std::string maneColor);
 
     std::string getManeColor();
     void setManeColor(std::string color);
@@ -50,11 +53,14 @@ class Lion : public Animal {
     std::string getUnique() override;
 };
 
+// Eagle
+
 class Eagle : public Animal {
   private:
     double wingSpan;
   public:
-    Eagle(std::string name, int age, std::string habitat, double wingSpan);
+    Eagle(std::string name, int age,
+        std::string habitat, double wingSpan);
     
     double getWingSpan();
     void setWingSpan(double wingSpan);
@@ -64,8 +70,25 @@ class Eagle : public Animal {
     void diet() override;
     std::string getAnimal() override;
     std::string getUnique() override;
+};
 
+// Ibex
 
+class Ibex : public Animal {
+  private:
+    std::string species;
+  public:
+    Ibex(std::string name, int age,
+        std::string habitat, std::string species);
+
+    std::string getSpecies();
+    void setSpecies(std::string species);
+
+    void speak() override;
+    void move() override;
+    void diet() override;
+    std::string getAnimal() override;
+    std::string getUnique() override;
 };
 
 class Zoo {

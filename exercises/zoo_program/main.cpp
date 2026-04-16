@@ -5,6 +5,7 @@ int main() {
 
   zoo.addAnimal(new Lion("Simba", 5, "Savanna", "Goldenrod"));
   zoo.addAnimal(new Eagle("Spiegel", 12, "America", 1.6));
+  zoo.addAnimal(new Ibex("Sherpa", 15, "Mountains", "Himalayan"));
   zoo.dailyShow();
   // zoo.displayAllInfo();
 
