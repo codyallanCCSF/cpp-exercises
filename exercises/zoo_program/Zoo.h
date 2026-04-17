@@ -5,6 +5,9 @@
 #include <iostream>
 #include <vector>
 
+
+// Base
+
 class Animal {
   protected:
     std::string name;
@@ -29,6 +32,11 @@ class Animal {
 
     // Non-virtual - Same for all classes
     void displayInfo();
+
+    // Getters
+    std::string getName() const;
+    int getAge() const;
+    std::string getHabitat() const;
 
 };
 
@@ -90,6 +98,27 @@ class Ibex : public Animal {
     std::string getAnimal() override;
     std::string getUnique() override;
 };
+
+// Snow Leopard
+
+class SnowLeopard : public Animal {
+  private:
+    std::string nickname;
+  public:
+    SnowLeopard(std::string name, int age, std::string habitat,
+        std::string nickname);
+
+    std::string getNickname();
+    void setNickname(std::string nickname);
+
+    void speak() override;
+    void move() override;
+    void diet() override;
+    std::string getAnimal() override;
+    std::string getUnique() override;
+};
+
+// Zoo
 
 class Zoo {
   private:

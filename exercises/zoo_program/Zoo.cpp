@@ -12,12 +12,26 @@ Animal::~Animal() {}
 
 void Animal::displayInfo() {
   std::cout 
-    << "\n----- " << name << " the " << getAnimal() << " -----\n"
+    << "Name: " << name << "\n"
+    << "Type: "<< getAnimal() << "\n"
     << "Age: " << age << "\n"
     << "Habitat: " << habitat << "\n"
-    << getUnique()
+    << "Unique Attribute: " << getUnique() << "\n"
     << std::endl;
 }
+
+std::string Animal::getName() const {
+  return name;
+}
+int Animal::getAge() const {
+  return age;
+}
+std::string Animal::getHabitat() const {
+  return habitat;
+}
+
+
+
 
 // Lion
 
@@ -66,7 +80,7 @@ double Eagle::getWingSpan() {
 std::string Eagle::getUnique() {
   std::ostringstream stream;
   stream << std::fixed << std::setprecision(2) << wingSpan;
-  return "Wing Span: " + stream.str() + "meters";
+  return "Wing Span: " + stream.str() + " meters";
 }
 
 
@@ -116,7 +130,40 @@ void Ibex::move() {
 }
 
 void Ibex::diet() {
-  std::cout << "Diet: Grasses/Shrubs" << std::endl;
+  std::cout << "Diet: Herbivore - Grasses/Shrubs" << std::endl;
+}
+
+// Snow Leopard
+
+SnowLeopard::SnowLeopard(std::string name, int age, std::string habitat,
+    std::string nickname) : Animal(name, age, habitat), nickname(nickname) {}
+
+void SnowLeopard::setNickname(std::string phrase) {
+  nickname = phrase;
+}
+
+std::string SnowLeopard::getNickname() {
+  return nickname;
+}
+
+std::string SnowLeopard::getUnique() {
+  return "Nickname: " + nickname;
+}
+
+std::string SnowLeopard::getAnimal() {
+  return "Snow Leopard";
+}
+
+void SnowLeopard::speak() {
+  std::cout << "Vocabulary: Growl, Hiss, Prusten" << std::endl;
+}
+
+void SnowLeopard::move() {
+  std::cout << "Movement style: Climb/Leap" << std::endl;
+}
+
+void SnowLeopard::diet() {
+  std::cout << "Diet: Carnivore - Wild sheep/Ibex" << std::endl;
 }
     
 // Zoo
@@ -126,10 +173,17 @@ void Zoo::addAnimal(Animal* a) {
 }
 
 void Zoo::dailyShow() {
-  std::cout << "~~~Welcome to the Zoo!~~~\n" << std::endl;
-  std::cout << "Today's Lineup" << std::endl;
+  std::cout << "~~~ Welcome to the Zoo! ~~~\n" << std::endl;
+  std::cout << "=== Today's Lineup ===\n" << std::endl;
   for (Animal* a : animals) {
-    a->displayInfo();
+    std::cout
+      << "\n=== " << a->getName() << " the "
+      << a->getAnimal() << " ===\n"
+      << "Age: " << a->getAge() << "\n"
+      << "Habitat: " << a->getHabitat() << "\n"
+      << a->getUnique()
+      << std::endl;
+
     a->speak();
     a->move();
     a->diet();
@@ -137,6 +191,8 @@ void Zoo::dailyShow() {
 }
 
 void Zoo::displayAllInfo() {
+
+  std::cout << "\n=== Animal Information ===\n" << std::endl;
   for (Animal* a : animals) {
     a->displayInfo();
   }
