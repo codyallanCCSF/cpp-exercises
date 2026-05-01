@@ -16,7 +16,7 @@ LinkedList::LinkedList() {
 }
 
 // Add a new node
-LinkedList::addBack(int val) {
+void LinkedList::addBack(int val) {
   Node* newNode = new Node(val);
 
   if (head == nullptr) {
@@ -42,8 +42,3 @@ void LinkedList::helloWorld() {
   std::cout << "Hello from the BST.cpp file! Link successful." << std::endl;
 }
 
-void LinkedList::addBack(int val) {
-  Node* newNode = new Node(val);
-
-
-}
