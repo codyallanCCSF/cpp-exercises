@@ -33,6 +33,15 @@ void LinkedList::addBack(int val) {
   }
 }
 
+void LinkedList::display() {
+  Node* temp = head;
+  while (temp != nullptr) {
+    std::cout << temp->data << " <-> ";
+    temp = temp->next;
+  }
+  std::cout << "NULL" << std::endl;
+}
+
 LinkedList::~LinkedList() {
 
   
