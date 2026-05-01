@@ -5,5 +5,9 @@ int main() {
 
   myList.helloWorld();
 
+  myList.addBack(10);
+
+  myList.display();
+
   return 0;
 }
