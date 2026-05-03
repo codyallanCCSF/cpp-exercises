@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-// Constructors
+// LinkedList Constructors - Node, LinkedList
 
 Node::Node(int val) {
   data = val;
@@ -15,8 +15,17 @@ LinkedList::LinkedList() {
   tail = nullptr;
 }
 
-// Add a new node
+// Destructor
+
+LinkedList::~LinkedList() {
+  
+}
+
+// LinkedList Methods - addback(), display(), getFirst()
+
 void LinkedList::addBack(int val) {
+// Adds a new node to the end of the list
+
   Node* newNode = new Node(val);
 
   if (head == nullptr) {
@@ -34,6 +43,8 @@ void LinkedList::addBack(int val) {
 }
 
 void LinkedList::display() {
+// Prints data at each node in list, head->tail
+
   Node* temp = head;
   while (temp != nullptr) {
     std::cout << temp->data << " <-> ";
@@ -42,12 +53,17 @@ void LinkedList::display() {
   std::cout << "NULL" << std::endl;
 }
 
-LinkedList::~LinkedList() {
+int LinkedList::getFirst() {
+// Returns the data stored in the first node
 
-  
+  if (head == nullptr) {
+    return -1;
+  }
+  return head->data;
 }
 
 void LinkedList::helloWorld() {
-  std::cout << "Hello from the BST.cpp file! Link successful." << std::endl;
+  std::cout << "Hello from the BST.cpp file! Link successful."
+    << std::endl;
 }
 
