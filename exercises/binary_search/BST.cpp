@@ -18,7 +18,18 @@ LinkedList::LinkedList() {
 // Destructor
 
 LinkedList::~LinkedList() {
+
+  Node* current = head;
   
+  while (current != nullptr) {
+    Node* nextNode = current->next;
+    std::cout << "Deleting node at " << current << std::endl;
+    delete current;
+    current = nextNode;
+  }
+
+  head = nullptr;
+  tail = nullptr;
 }
 
 // LinkedList Methods - addback(), display(), getFirst()
