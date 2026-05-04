@@ -1,9 +1,11 @@
 # Ignore compiled binaries
-*.out
+out
 *.exe
 *.o
+*a.out
 *.obj
-
+*.swp
+*.swo
 # Ignore Mac/Windows system files
 .DS_Store
 Thumbs.db
