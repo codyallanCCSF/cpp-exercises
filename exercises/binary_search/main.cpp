@@ -3,16 +3,11 @@
 
 int main() {
   LinkedList myList;
-
   myList.helloWorld();
 
-  myList.addBack(10);
-  myList.addBack(20);
+  BST myTree;
+  myTree.treeHello();
 
-  std::cout << "The first value is: " 
-    << myList.getFirst() << std::endl;
-
-  myList.display();
 
   return 0;
 }

@@ -1,6 +1,7 @@
 #include "BST.h"
 #include <iostream>
 
+// --- Doubly Linked List Definitions ---
 
 // LinkedList Constructors - Node, LinkedList
 
@@ -40,15 +41,12 @@ void LinkedList::addBack(int val) {
   Node* newNode = new Node(val);
 
   if (head == nullptr) {
-    //For empty list, head is also tail
     head = newNode;
     tail = newNode;
   } else {
-    // Update old tail's next to new node
+
     tail->next = newNode;
-    // Assign new node's prev to current tail
     newNode->prev = tail;
-    // Update tail to new node
     tail = newNode;
   }
 }
@@ -78,3 +76,21 @@ void LinkedList::helloWorld() {
     << std::endl;
 }
 
+// --- BST Definitions ---
+
+// BST Constructors
+
+BSTNode::BSTNode(int val) {
+  data = val;
+  left = nullptr;
+  right = nullptr;
+}
+
+BST::BST() {
+  root = nullptr;
+}
+
+void BST::treeHello() {
+  std::cout << "Hello from the BST class! Root initialized to "
+    << root << std::endl;
+}

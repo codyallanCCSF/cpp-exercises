@@ -1,6 +1,8 @@
 #ifndef BST_H
 #define BST_H
 
+// --- Doubly Linked List Headers ---
+
 struct Node {
 // Properties of Node data type
   
@@ -29,6 +31,26 @@ class LinkedList {
     void helloWorld();
 
     int getFirst();
+};
+
+// --- BST Headers ---
+
+struct BSTNode {
+  int data;
+  BSTNode* left;
+  BSTNode* right;
+  BSTNode(int val);
+};
+
+class BST {
+
+  private:
+
+    BSTNode* root;
+  public:
+
+    BST();
+    void treeHello();
 };
 
 #endif
