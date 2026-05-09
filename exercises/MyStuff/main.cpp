@@ -1,17 +1,17 @@
-#include "MyCollection.h"
 #include "MyVector.h"
+#include <string>
 #include <iostream>
 
 int main() {
-  MyVector<int> nums;
-  nums.push_back(42);
+  MyVector<int> v;
+  v.push_back(10);
+  v.push_back(20);
+  v.push_back(30);
 
-  MyVector<std::string> names;
-  names.push_back("Cody");
+  std::cout << "Integer Vector: " << v << "\n";
+  std::cout << "Contains 20? " << v.contains(20) << "\n";
+  std::cout << "Contains 21? " << v.contains(21) << "\n";
 
-  std::cout << "Int size: " << nums.size() 
-    << " | String size: " << names.size()
-    << std::endl;
-  
+
   return 0;
 }
