@@ -6,6 +6,12 @@
 
 template <typename T>
 class MyVector : public MyCollection<T> {
+  
+  private:
+    T* data;
+    int  v_size;    
+    int  v_capacity; 
+  
   public:
 
     // Constructors
@@ -32,8 +38,9 @@ class MyVector : public MyCollection<T> {
       delete[] data;
     }                         
 
-    // Operator Overloading
+    // --- Operator Overloading ---
 
+    // Assignment operator
     MyVector& operator=(const MyVector& other) {
       if (this != &other) {
         delete[] data;
@@ -47,19 +54,21 @@ class MyVector : public MyCollection<T> {
       return *this;
     }
 
-      
+    // Equality operator  
     bool operator==(const MyVector& other) const {
       if (v_size != other.v_size) return false;
       for (int i = 0; i < v_size; i++) {
-        if (data[i] = other.data[i]) return false;
+        if (data[i] == other.data[i]) return false;
       }
       return true;
     } 
 
+    // Mutator
     T& operator[](int index) override {
       return data[index];
     }
-      
+    
+    // Accessor
     const T& operator[](int index) const override {
       return data[index];
     }      
@@ -95,12 +104,10 @@ class MyVector : public MyCollection<T> {
       v_size = 0;
     }
 
-    int  capacity() const;
+    int  capacity() const {
+      return v_capacity;
+    }
 
-  private:
-    T* data;
-    int  v_size;     // renamed to avoid conflict with size()
-    int  v_capacity; 
 };
 
 template <typename T>
