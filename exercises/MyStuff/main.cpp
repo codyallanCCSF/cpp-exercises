@@ -1,92 +1,85 @@
-#include "MyVector.h"
+#include "MyLinkedList.h"
 #include <string>
 #include <iostream>
 #include <cassert>
 
 int main() {
+    // 1. Test Basic Functionality & Inheritance
+    std::cout << "--- Testing Basic Functionality (push_back/size/empty) ---\n";
+    MyLinkedList<int> list;
+    
+    std::cout << "Is empty? " << (list.empty() ? "Yes" : "No") << "\n";
+    list.push_back(10);
+    list.push_back(20);
+    list.push_back(30);
+    
+    std::cout << "List: " << list << " | Size: " << list.size() << "\n";
 
-  // 1. Test basic functionality and templates
-  std::cout << "--- Testing Basic Functionality ---\n";
+    // 2. Test Linked List Specifics (Front operations)
+    std::cout << "\n--- Testing push_front & pop_front ---\n";
+    list.push_front(5);
+    std::cout << "After push_front(5): " << list << "\n";
+    
+    list.pop_front();
+    std::cout << "After pop_front: " << list << " (should be back to [10, 20, 30])\n";
 
-  MyVector<int> v1;
-  v1.push_back(10);
-  v1.push_back(20);
-  v1.push_back(30);
+    // 3. Test the remove(value) function
+    std::cout << "\n--- Testing remove(value) ---\n";
+    list.push_back(40);
+    std::cout << "Before remove: " << list << "\n";
+    
+    bool removed = list.remove(20);
+    std::cout << "Removed 20? " << (removed ? "Yes" : "No") << "\n";
+    std::cout << "After removing 20: " << list << "\n";
+    
+    list.remove(10); // Remove head
+    list.remove(40); // Remove tail
+    std::cout << "After removing head (10) and tail (40): " << list << "\n";
 
-  std::cout << "v1 (initial): " << v1 << " | Size: "
-    << v1.size() << "\n";
+    // 4. Test Deep Copy (Copy Constructor)
+    std::cout << "\n--- Testing Copy Constructor (Deep Copy) ---\n";
+    MyLinkedList<int> list2 = list;
+    list2.push_back(99);
+    
+    std::cout << "Original: " << list << "\n";
+    std::cout << "Copy + 99: " << list2 << "\n";
+    if (list.size() != list2.size()) {
+        std::cout << "SUCCESS: Independent memory detected.\n";
+    }
 
-  // 2. Test Capacity Growth
-  std::cout << "Current capacity: " << v1.capacity() << "\n";
+    // 5. Test Assignment Operator & Self-Assignment
+    std::cout << "\n--- Testing Assignment Operator ---\n";
+    MyLinkedList<int> list3;
+    list3 = list2;
+    std::cout << "List3 after assignment: " << list3 << "\n";
+    
+    list3 = list3; // Self-assignment check
+    std::cout << "List3 after self-assignment: " << list3 << "\n";
 
-  // 3. Test Deep Copy (Copy Constructor)
-  std::cout << "\n--- Testing Deep Copy Constructor ---\n";
+    // 6. Test Equality Operator
+    std::cout << "\n--- Testing Equality ---\n";
+    MyLinkedList<int> list4;
+    list4.push_back(30);
+    list4.push_back(99);
+    
+    std::cout << "List2 == List4? " << (list2 == list4 ? "True" : "False") << "\n";
+    list4.push_back(100);
+    std::cout << "List2 == List4 (after adding 100)? " << (list2 == list4 ? "True" : "False") << "\n";
 
-  MyVector<int> v2 = v1;
-  v2.push_back(40);
+    // 7. Test with Strings (Template check)
+    std::cout << "\n--- Testing with Strings ---\n";
+    MyLinkedList<std::string> names;
+    names.push_back("Alice");
+    names.push_back("Bob");
+    
+    std::cout << "Names: " << names << "\n";
+    std::cout << "Contains 'Alice'? " << (names.contains("Alice") ? "Yes" : "No") << "\n";
 
-  std::cout << "v1 (original): " << v1 << "\n";
-  std::cout << "v2 (copied + 40): " << v2 << "\n";
+    // 8. Test Clear
+    std::cout << "\n--- Testing Clear ---\n";
+    list.clear();
+    std::cout << "List size after clear: " << list.size() << "\n";
+    std::cout << "Is empty? " << (list.empty() ? "Yes" : "No") << "\n";
 
-  //Check if modifying v2 affected v1
-  if (v1.size() != v2.size()) {
-    std::cout << "SUCCESS: v1 and v2 are independent (Deep Copy).\n";
-  }
-
-  // Test Equality Operator (operator==)
-  std::cout << "\n--- Testing Equality ---\n";
-
-  MyVector<int> v3;
-  v3.push_back(10);
-  v3.push_back(20);
-  v3.push_back(30);
-
-  std::cout << "v1 == v3? " 
-    << (v1 == v3 ? "True" : "False") << "\n";
-
-  v3.push_back(99);
-
-  std::cout << "v1 == v3 (after adding 99)? "
-    << (v1 == v3 ? "True" : "False") << "\n";
-
-  // Test Assignment Operator
-  std::cout << "\n--- Testing Assignment & Self-Assignment ---\n";
-
-  MyVector<int> v4;
-  v4 = v1;
-  std::cout << "v4 after assignment: " << v4 << "\n";
-
-  // Testing Self-Assignment
-  v4 = v4;
-  std::cout << "v4 after self-assignment: " 
-    << v4 << " (should be same)\n";
-
-  // 6. Test Mutator Subscript (operator[])
-  std::cout << "\n--- Testing Subscript Mutator ---\n";
-  
-  v1[0] = 100;
-
-  std::cout << "v1 after reassigning v1[0]: " << v1 << "\n";
-
-  // 7. Testing with strings
-  std::cout << "\n--- Testing with Strings ---\n";
-
-  MyVector<std::string> words;
-
-  words.push_back("Hello");
-  words.push_back("World!");
-  
-  std::cout << "Word Vector: " << words << "\n";
-  std::cout << "Contains 'World! " 
-    << (words.contains("World!") ? "Yes" : "No") << "\n";
-
-  // Test Deep Copy with Strings
-  MyVector<std::string> backup;
-  backup = words;
-  words[0] = "Goodbye";
-
-  std::cout << "Original after change: " << words[0] << "\n";
-  std::cout << "Backup (should be Hello): " << backup[0] << "\n";
-
-  return 0;
+    return 0;
 }

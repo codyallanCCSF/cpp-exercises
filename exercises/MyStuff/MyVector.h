@@ -58,7 +58,7 @@ class MyVector : public MyCollection<T> {
     bool operator==(const MyVector& other) const {
       if (v_size != other.v_size) return false;
       for (int i = 0; i < v_size; i++) {
-        if (data[i] == other.data[i]) return false;
+        if (data[i] != other.data[i]) return false;
       }
       return true;
     } 
